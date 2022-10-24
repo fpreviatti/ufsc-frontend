@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+ <head>
+
+ </head>
+ <body>
+    Digite um número: <input id="num" type="number"> <br />
+    <button onclick="tabuada()" type="submit">Tabuada do número</button><br />
+
+    <div id='resposta' style='display:inline'></div>
+ </body>
+</html>
+
+<script>
+
+function tabuada(){
+  var num = parseInt(document.getElementById("num").value);
+  var resposta = document.getElementById('resposta');
+  var tabuada='';
+
+  for(var x=1; x<=10 ; x++){
+    tabuada += num+" x "+x+" = "+
+               num*x+"<br />";
+  }
+   
+  resposta.innerHTML = tabuada;
+  
+}
+
+
+</script>

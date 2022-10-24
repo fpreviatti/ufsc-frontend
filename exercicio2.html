@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+ <head>
+
+ </head>
+ <body>
+    Digite parte do nome que deseja colocar em negrito: <input oninput="negrito()" id="nome" type="text"> <br />
+ </body>
+
+ <ol>
+    <li>João</li>
+    <li>Claudio</li>
+    <li>Marcio</li>
+  </ol>
+</html>
+
+<script>
+
+function negrito(){
+    var nome = document.getElementById('nome').value;
+
+    console.log(nome);
+
+
+        const nodeList = document.querySelectorAll("li");
+        for (let i = 0; i < nodeList.length; i++) {
+
+            if(nome==''){
+                nodeList[i].style.fontWeight = 'normal';
+            }
+
+            else if(nodeList[i].textContent.startsWith(nome)){
+
+                nodeList[i].style.fontWeight = 'bold';
+                
+            }
+            else{
+                nodeList[i].style.fontWeight = 'normal';
+            }
+   
+        }
+}
+
+</script>
