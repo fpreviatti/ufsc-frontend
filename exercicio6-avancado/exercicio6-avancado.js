@@ -29,7 +29,6 @@ function initializeWebStorage(){
 function inicio(){
 
   initializeWebStorage();
-
   login();
 
 }
@@ -53,21 +52,20 @@ function criarUsuario(){
   let senhaRecuperada = document.getElementById("senha").value;
 
   this.usuario = new Usuario(emailRecuperado,senhaRecuperada);
+  this.usuarios = JSON.parse(localStorage.getItem(USUARIOS_KEY));
 
-  if(isExist(emailRecuperado)){
+  verificador = isExist(emailRecuperado,this.usuarios);
+
+  if(verificador==true){
     alert('Usuário já cadastrado');
+    return;
   }
-
-
   else{
     this.usuarios = JSON.parse(localStorage.getItem(USUARIOS_KEY));
-
     this.usuarios.push(this.usuario);
-  
     localStorage.setItem(USUARIOS_KEY, JSON.stringify(this.usuarios));
   }
 
-  
 }
 
 function cadastro(){
@@ -79,7 +77,6 @@ function cadastro(){
   element.style = 'display: none';
 
   element3.style = 'display: inline';
-
 
   var spanConta = document.getElementById('span-conta');
 
@@ -123,7 +120,7 @@ function login(){
 
   var hrefDeslogar = document.createElement("a");
 
-  hrefDeslogar.href = '/exercicio6-avancado/exercicio6-avancado.html';
+  hrefDeslogar.href = '../exercicio6-avancado/exercicio6-avancado.html';
 
   hrefDeslogar.innerHTML = "Deslogar";
 
@@ -145,10 +142,11 @@ function buscaUsuario(email){
   return null;
 }
 
-function isExist(email){
-  
-  for (let u of this.usuarios) {
-    if (u.email?.valueOf() == email?.valueOf()) {
+function isExist(email,usuarios){
+
+  for (let u of usuarios) {
+
+    if (u.email === email) {
       return true;
     }
   }
